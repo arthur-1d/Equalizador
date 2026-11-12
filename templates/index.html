@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apresentação de um projeto escolar de equalizador de som com Arduino, sensor KY-038 e LEDs.">
+  <title>Projeto Áudio | Equalizador com Arduino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="grid-overlay"></div>
+  <header class="topbar">
+    <a class="brand" href="#inicio"><span class="brand-mark">〽</span> AUDIO<span class="brand-light">LAB</span></a>
+    <nav>
+      <a href="#conceito">O equalizador</a>
+      <a href="#projeto">O projeto</a>
+      <a href="#resultado">Resultado</a>
+    </nav>
+    <a class="nav-cta" href="#componentes">Componentes <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> PROJETO DE ROBÓTICA • ARDUINO</div>
+        <h1>O SOM EM<br><span>OUTRA FREQUÊNCIA.</span></h1>
+        <p class="hero-lead">Uma experiência de eletrônica que explora a relação entre som, sensores e luz usando Arduino, o módulo KY-038 e LEDs.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projeto">Conheça o projeto <span>↓</span></a>
+          <a class="text-link" href="#conceito">Entenda como funciona <span>↗</span></a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><small>ARDUINO UNO</small></div>
+          <div><strong>02</strong><small>LEITURA DE SOM</small></div>
+          <div><strong>03</strong><small>RESPOSTA EM LEDS</small></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Ilustração abstrata de ondas sonoras e equalização">
+        <div class="visual-ring ring-one"></div><div class="visual-ring ring-two"></div>
+        <div class="sound-core"><span>♫</span></div>
+        <div class="wave-bars">
+          <i style="--h:25%"></i><i style="--h:52%"></i><i style="--h:36%"></i>
+          <i style="--h:78%"></i><i style="--h:100%"></i><i style="--h:62%"></i>
+          <i style="--h:86%"></i><i style="--h:43%"></i><i style="--h:68%"></i>
+          <i style="--h:31%"></i><i style="--h:57%"></i>
+        </div>
+        <div class="visual-caption"><span class="tiny-dot"></span> SOUND REACTIVE SYSTEM <b>///</b> 001</div>
+      </div>
+      <div class="hero-bottom"><span>SCROLL PARA EXPLORAR</span><span class="scroll-line"></span><span>01 — 03</span></div>
+    </section>
+
+    <section class="section" id="conceito">
+      <div class="section-heading">
+        <div><div class="eyebrow">01 / FUNDAMENTO</div><h2>O que é um <span>equalizador?</span></h2></div>
+        <p>Mais do que aumentar ou diminuir o volume, um equalizador permite controlar o equilíbrio entre diferentes partes do som.</p>
+      </div>
+      <div class="concept-grid">
+        <article class="glass-card concept-main">
+          <div class="card-icon">⌁</div>
+          <h3>Controle de frequências</h3>
+          <p>Um equalizador de áudio divide o sinal sonoro em faixas de frequência e permite ajustar a intensidade de cada uma delas. Assim, é possível destacar ou reduzir graves, médios e agudos, modificando o timbre do áudio.</p>
+          <div class="spectrum">
+            <div><span>GRAVES</span><i class="bar low"></i><small>20–250 Hz</small></div>
+            <div><span>MÉDIOS</span><i class="bar mid"></i><small>250 Hz–4 kHz</small></div>
+            <div><span>AGUDOS</span><i class="bar high"></i><small>4–20 kHz</small></div>
+          </div>
+          <small class="note">Faixas aproximadas e ilustrativas; a divisão pode variar conforme o equipamento.</small>
+        </article>
+        <article class="glass-card process-card">
+          <div class="eyebrow">FLUXO DE ÁUDIO</div>
+          <div class="process-step"><b>01</b><div><strong>Entrada</strong><small>O áudio chega ao equipamento.</small></div></div>
+          <div class="process-line"></div>
+          <div class="process-step"><b>02</b><div><strong>Separação</strong><small>Filtros dividem o sinal em faixas.</small></div></div>
+          <div class="process-line"></div>
+          <div class="process-step"><b>03</b><div><strong>Ajuste</strong><small>Cada faixa é reforçada ou atenuada.</small></div></div>
+          <div class="process-line"></div>
+          <div class="process-step"><b>04</b><div><strong>Saída</strong><small>O som é reproduzido com novo equilíbrio.</small></div></div>
+        </article>
+      </div>
+      <div class="info-strip"><span class="info-symbol">i</span><p><strong>Importante:</strong> um equalizador convencional trabalha com o sinal de áudio e suas frequências. Um conjunto de sensor de som e LEDs, por outro lado, pode reagir à intensidade do som, mas não separa automaticamente graves, médios e agudos.</p></div>
+    </section>
+
+    <section class="section project-section" id="projeto">
+      <div class="section-heading">
+        <div><div class="eyebrow">02 / MONTAGEM EXPERIMENTAL</div><h2>O equalizador <span>com Arduino.</span></h2></div>
+        <p>A proposta foi construir um sistema visual que percebesse sons pelo microfone do sensor e respondesse acendendo LEDs.</p>
+      </div>
+      <div class="project-layout">
+        <div class="project-description">
+          <div class="project-tag"><span class="pulse"></span> PROTÓTIPO ESCOLAR</div>
+          <h3>Do som à<br>resposta luminosa.</h3>
+          <p>O Arduino UNO seria responsável por ler o sinal do módulo KY-038 e controlar os LEDs. Quando o microfone detectasse um som acima de determinado nível, a programação poderia acender um ou mais LEDs, criando um efeito visual sincronizado com o ambiente.</p>
+          <p>Essa montagem funciona como um <strong>indicador luminoso de intensidade sonora</strong>. Para se tornar um equalizador de frequências de verdade, seria necessário analisar o conteúdo do áudio e separar suas faixas de frequência.</p>
+          <a class="button outline" href="#componentes">Ver os componentes <span>↓</span></a>
+        </div>
+        <div class="signal-panel">
+          <div class="panel-top"><span>DIAGRAMA CONCEITUAL</span><span class="live-label">● SISTEMA PROPOSTO</span></div>
+          <div class="signal-flow">
+            <div class="signal-node"><div class="node-icon">)))</div><b>KY-038</b><small>Capta o som</small></div>
+            <div class="signal-arrow">→</div>
+            <div class="signal-node"><div class="node-icon">⌘</div><b>ARDUINO</b><small>Processa a leitura</small></div>
+            <div class="signal-arrow">→</div>
+            <div class="signal-node"><div class="node-icon led-icon"><i></i><i></i><i></i></div><b>LEDS</b><small>Exibem a resposta</small></div>
+          </div>
+          <div class="panel-footer"><span>ENTRADA ANALÓGICA / DIGITAL</span><span>SAÍDA VISUAL</span></div>
+          <div class="signal-note">Representação do funcionamento planejado — não é um registro de uma montagem funcionando.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="componentes">
+      <div class="section-heading">
+        <div><div class="eyebrow">03 / HARDWARE</div><h2>Peças da <span>montagem.</span></h2></div>
+        <p>Cada componente teria uma função específica no circuito experimental.</p>
+      </div>
+      <div class="component-grid">
+        <article class="component-card"><div class="component-number">01</div><div class="component-art arduino-art">UNO</div><h3>Arduino UNO</h3><p>Placa programável que recebe os dados do sensor, executa o código e controla as saídas conectadas.</p><span class="chip">UNIDADE DE CONTROLE</span></article>
+        <article class="component-card"><div class="component-number">02</div><div class="component-art sensor-art">)))</div><h3>Sensor KY-038</h3><p>Módulo com microfone que detecta sons. Possui saída analógica e saída digital com ajuste de sensibilidade.</p><span class="chip">ENTRADA DE SOM</span></article>
+        <article class="component-card"><div class="component-number">03</div><div class="component-art board-art"><span></span><span></span><span></span><span></span></div><h3>Protoboard</h3><p>Base de contatos usada para conectar os componentes e montar o circuito sem soldagem.</p><span class="chip">CONEXÕES</span></article>
+        <article class="component-card"><div class="component-number">04</div><div class="component-art leds-art"><i></i><i></i><i></i></div><h3>LEDs e resistores</h3><p>Os LEDs representam visualmente a detecção sonora. Resistores limitam a corrente e ajudam a protegê-los.</p><span class="chip">SAÍDA LUMINOSA</span></article>
+      </div>
+    </section>
+
+    <section class="section result-section" id="resultado">
+      <div class="result-card">
+        <div class="result-copy">
+          <div class="eyebrow">04 / RESULTADO DO EXPERIMENTO</div>
+          <h2>Nem todo projeto<br><span>termina como planejado.</span></h2>
+          <p>Durante a montagem, o circuito não funcionou como esperado. Foi identificado um possível mau contato entre os terminais do sensor KY-038 e os contatos da protoboard. Com uma conexão instável, o Arduino pode não receber corretamente os sinais do microfone, impedindo a resposta dos LEDs.</p>
+          <p>Por isso, o protótipo não conseguiu demonstrar o efeito luminoso previsto. O resultado foi registrado com transparência: a ideia e o funcionamento esperado foram estudados, mas a montagem apresentou uma falha física de conexão.</p>
+          <div class="status"><span class="status-dot"></span><div><b>RESULTADO: NÃO FUNCIONOU</b><small>Falha de conexão / mau contato identificado</small></div></div>
+        </div>
+        <div class="diagnostic">
+          <div class="diagnostic-head">ANÁLISE DA FALHA <span>!</span></div>
+          <div class="diagnostic-visual">
+            <div class="pin-row"><i></i><i></i><i></i><i class="loose"></i><i></i></div>
+            <div class="board-lines"><span></span><span></span><span></span><span></span></div>
+            <div class="contact-warning">CONEXÃO INSTÁVEL</div>
+          </div>
+          <div class="diagnostic-item"><span>01</span><p><b>Possível causa</b><small>Terminal do sensor sem contato firme na protoboard.</small></p></div>
+          <div class="diagnostic-item"><span>02</span><p><b>Consequência</b><small>Leitura irregular ou ausência de sinal no Arduino.</small></p></div>
+          <div class="diagnostic-item"><span>03</span><p><b>Próxima tentativa</b><small>Reencaixar o módulo, conferir os jumpers e testar as conexões.</small></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-mark">〽</div>
+      <div class="eyebrow">CONCLUSÃO</div>
+      <h2>Aprender também é<br><span>entender o que falhou.</span></h2>
+      <p>Mesmo sem funcionar, o experimento permitiu estudar sensores, entradas e saídas do Arduino, montagem em protoboard e a importância de conexões elétricas firmes. A próxima etapa seria revisar o contato do KY-038 e testar o circuito por partes.</p>
+    </section>
+  </main>
+  <footer><a class="brand" href="#inicio">〽 AUDIO<span class="brand-light">LAB</span></a><span>PROJETO EDUCACIONAL • ELETRÔNICA E ÁUDIO</span><a href="#inicio">VOLTAR AO TOPO ↑</a></footer>
+</body>
+</html>
